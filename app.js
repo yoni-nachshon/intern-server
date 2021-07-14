@@ -4,9 +4,8 @@ var app = express();
 const UserToken = require("./model/userToken");
 const mongoose = require('mongoose');
 
-const dbPath = "mongodb://127.0.0.1:27017/intern";
+const dbPath = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/intern";
 
-console.log('')
 mongoose.connect(dbPath);
 
 app.use(require("cors")())
