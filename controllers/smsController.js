@@ -27,7 +27,18 @@ function smsController() {
                 var to = req.body.to;
                 var text = req.body.text + ' your code is ' + mCode;
                 console.log(text);
-                res.status(200).send();                      
+                vonage.message.sendSms(from, to, text, (err, responseData) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        if (responseData.messages[0]['status'] === "0") {
+                            console.log("Message sent successfully.");
+                            res.status(200).send();                      
+                        } else {
+                            console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+                        }
+                    }
+                })
             }
         })
     }
@@ -50,20 +61,7 @@ function smsController() {
             sendSmsInternal(req, res);
         }
         
-        // return;
-        // return because next code is cost money
 
-        vonage.message.sendSms(from, to, text, (err, responseData) => {
-            if (err) {
-                console.log(err);
-            } else {
-                if (responseData.messages[0]['status'] === "0") {
-                    console.log("Message sent successfully.");
-                } else {
-                    console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-                }
-            }
-        })
     }
 
     function codecomper(req, res) {
