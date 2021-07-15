@@ -7,8 +7,8 @@ const smsSchema = require('../model/smsSchema');
 var sms;
 
 const vonage = new Vonage({
-    apiKey: "6e3b2874",
-    apiSecret: "PsqGUaCcp2N97DXP"
+    apiKey: "4d12ec55",
+    apiSecret: "2w9dc2lbeTVU4oOD"
 })
 
 function smsController() {
@@ -50,7 +50,7 @@ function smsController() {
             sendSmsInternal(req, res);
         }
         
-        return;
+        // return;
         // return because next code is cost money
 
         vonage.message.sendSms(from, to, text, (err, responseData) => {
