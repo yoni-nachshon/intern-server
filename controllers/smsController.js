@@ -8,7 +8,7 @@ var sms;
 
 const vonage = new Vonage({
     apiKey: "4d12ec55",
-    apiSecret: "2w9dc2lbeTVU4oOD"
+    apiSecret: "2w9dc2IbeTVU4oOD"
 })
 
 function smsController() {
